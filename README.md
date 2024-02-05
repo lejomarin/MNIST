@@ -8,4 +8,5 @@ Mini-batch Stochastic Gradient Descent (SGD) is a commonly used optimization met
 
 We'll determine the best hyperparameters for the model based on the sweeps performed in Weights and Biases.
 
-<img width="1004" alt="W B_chart" src="https://github.com/lejomarin/MNIST/assets/21342132/5ac33c8f-c646-4da7-903f-a07bd4bf4898">
+
+<img width="872" alt="W B_chart" src="https://github.com/lejomarin/MNIST/assets/21342132/15d0c262-9514-4518-b9c8-431ab9b5432d">

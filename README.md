@@ -10,3 +10,15 @@ We'll determine the best hyperparameters for the model based on the sweeps perfo
 
 
 <img width="872" alt="W B_chart" src="https://github.com/lejomarin/MNIST/assets/21342132/15d0c262-9514-4518-b9c8-431ab9b5432d">
+
+
+Tools used:
+
+Keras
+Tensorflow
+Flask
+OpenCV
+Python
+HTML
+JavaScript
+JSON

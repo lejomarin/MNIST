@@ -1,3 +1,6 @@
 .DS_Store
 wandb/
 lejomarin/
+images/
+assets/
+__pycache__/

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MNIST Digit Prediction</title>
+</head>
+<body>
+
+<h1>MNIST Digit Prediction</h1>
+
+<!-- Webcam video snapshot -->
+<video id="video" width="640" height="480" autoplay></video>
+<button id="snap">Capture</button>
+<canvas id="canvas" width="640" height="480"></canvas>
+
+<!-- Image Upload -->
+<input type="file" id="imageUpload" accept="image/*"/>
+
+<!-- Prediction Result -->
+<h2 id="predictionResult">Prediction will be displayed here</h2>
+
+<script>
+// Access the webcam
+const video = document.getElementById('video');
+if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+        video.srcObject = stream;
+        video.play();
+    });
+}
+
+// Elements for taking the snapshot
+const canvas = document.getElementById('canvas');
+const context = canvas.getContext('2d');
+const snapButton = document.getElementById('snap');
+
+// Event for taking snapshot from webcam
+snapButton.addEventListener('click', function() {
+    context.drawImage(video, 0, 0, 640, 480);
+    sendImageToServer(canvas.toDataURL('image/png'));
+});
+
+// Event for uploading image
+const imageUpload = document.getElementById('imageUpload');
+imageUpload.addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        sendImageToServer(e.target.result);
+    };
+    reader.readAsDataURL(file);
+});
+
+// Send the image to the server for prediction
+function sendImageToServer(imageData) {
+    fetch('http://localhost:5000/predict', {
+        method: 'POST',
+        body: JSON.stringify({ image: imageData }),
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('predictionResult').innerText = 'Predicted Digit: ' + data.digit;
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+</script>
+
+</body>
+</html>

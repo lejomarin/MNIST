@@ -1,5 +1,9 @@
-tensorflow==2.15.0
-numpy
+tensorflow==2.13.1
 pandas
 matplotlib
 wandb
+Flask==3.0.2
+gunicorn==21.2.0
+numpy
+opencv-python-headless==4.9.0.80
+Pillow
